@@ -2,6 +2,7 @@
 
 * **Objective** - To create an implementation of various `Collection` classes
 * **Purpose** - To gain familiarity with inner workings of `Collection` framework
+* **Restrictions** - You are forbidden from using any built-in `Collection` objects.
 
 ## Part 1 - Clone the project
 * Begin by _forking_ this project into a personal repository.
