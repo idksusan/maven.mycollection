@@ -15,7 +15,8 @@ public class MyArrayList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @Override
     public void add(SomeType objectToAdd) {
-
+        int newLength = this.array.length + 1;
+        int lastIndex = newLength - 1;
     }
 
     @Override
