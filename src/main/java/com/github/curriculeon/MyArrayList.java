@@ -3,16 +3,19 @@ package com.github.curriculeon;
 import java.util.Iterator;
 
 public class MyArrayList<SomeType> implements MyCollectionInterface<SomeType>{
-    public MyArrayList() {
+    private SomeType[] array;
 
+    public MyArrayList() {
+        this.array = (SomeType[]) new Object();
     }
 
     public MyArrayList(SomeType[] valuesToBePopulatedWith) {
+        this.array = valuesToBePopulatedWith;
     }
 
     @Override
     public void add(SomeType objectToAdd) {
-        
+
     }
 
     @Override
