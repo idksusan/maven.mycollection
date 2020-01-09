@@ -1,12 +1,14 @@
 package com.github.curriculeon;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import static java.util.Arrays.copyOf;
 
 public class MyArrayList<SomeType> implements MyCollectionInterface<SomeType>{
     private SomeType[] array;
 
     public MyArrayList() {
-        this.array = (SomeType[]) new Object();
+        this.array = (SomeType[]) new Object[0];
     }
 
     public MyArrayList(SomeType[] valuesToBePopulatedWith) {
@@ -17,31 +19,54 @@ public class MyArrayList<SomeType> implements MyCollectionInterface<SomeType>{
     public void add(SomeType objectToAdd) {
         int newLength = this.array.length + 1;
         int lastIndex = newLength - 1;
+        SomeType[] newArray = copyOf(this.array, newLength);
+        newArray[lastIndex] = objectToAdd;
+        this.array = newArray;
     }
 
     @Override
     public void remove(SomeType objectToRemove) {
-
+        for (int currentIndex = 0; currentIndex < array.length; currentIndex++){
+            SomeType someObject = array[currentIndex];
+            if (someObject.equals(objectToRemove)) {
+                this.remove(currentIndex);
+                return;
+            }
+        }
     }
 
     @Override
     public void remove(int indexOfObjectToRemove) {
-
+        SomeType[] leftArray = Arrays.copyOfRange(this.array, 0, indexOfObjectToRemove);
+        SomeType[] rightArray = Arrays.copyOfRange(this.array, indexOfObjectToRemove + 1, this.array.length);
+        SomeType[] tempArray = Arrays.copyOf(leftArray, this.array.length - 1);
+        for (int rightArrayCurrentIndex = 0; rightArrayCurrentIndex < rightArray.length; rightArrayCurrentIndex++){
+            SomeType someObject = rightArray[rightArrayCurrentIndex];
+            int newIndex = indexOfObjectToRemove + rightArrayCurrentIndex;
+            tempArray[newIndex] = someObject;
+        }
+        this.array  = tempArray;
     }
 
     @Override
     public SomeType get(int indexOfElement) {
-        return null;
+        return array[indexOfElement];
     }
 
     @Override
     public Boolean contains(SomeType objectToCheckFor) {
-        return null;
+        for (int i = 0; i < array.length; i++){
+            SomeType currentObject = array[i];
+            if(currentObject.equals(objectToCheckFor)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public Integer size() {
-        return null;
+        return array.length;
     }
 
     @Override
